@@ -6,13 +6,38 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:21:31 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/08/05 18:20:54 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:53:53 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**read_map(int fd)
+int	ver_newline(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (0);
+	while (line[i])
+	{
+		if (line[i] == '\n')
+		{
+			if (line[i + 1] == '\n')
+				return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	ver_empty_file(int bytes_read, t_map *data)
+{
+	if (bytes_read == 0)
+		return_error(2, &data);
+}
+
+char	**read_map(int fd, t_map *data)
 {
 	char	buffer[BUFFER_SIZE];
 	int		bytes_read;
@@ -22,24 +47,20 @@ char	**read_map(int fd)
 
 	bytes_read = read(fd, buffer, BUFFER_SIZE - 1);
 	line = ft_strdup("");
+	ver_empty_file(bytes_read, data);
 	while (bytes_read > 0)
 	{
 		buffer[bytes_read] = '\0';
 		temp = line;
 		line = ft_strjoin(line, buffer);
+		if (!line)
+			return_error(2, &data);
 		free(temp);
 		bytes_read = read(fd, buffer, BUFFER_SIZE - 1);
 	}
+	if (!ver_newline(line))
+		return_error(3, &data);
 	matrix = ft_split(line, '\n');
 	free(line);
 	return (matrix);
 }
-
-int	map_is_valid(char *fdname)
-{
-	int	len;
-
-	len = ft_strlen(fdname);
-	return(len > 4 && !ft_strncmp(fdname + len - 4, ".ber", 4));
-}
-
