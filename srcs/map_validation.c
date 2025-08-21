@@ -6,13 +6,13 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:33:48 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/08/13 18:39:23 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:42:40 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	val_map_shape(t_map *data)
+int	val_map_shape(t_data *data)
 {
 	int	i;
 	int	first_len;
@@ -32,7 +32,7 @@ int	val_map_shape(t_map *data)
 	return (1);
 }
 
-int	val_map_walls(t_map *data)
+int	val_map_walls(t_data *data)
 {
 	int	i;
 	int	width;
@@ -59,7 +59,7 @@ int	val_map_walls(t_map *data)
 	return (1);
 }
 
-int	val_map_cont(t_map *data, int collect, int exit, int player)
+int	val_map_cont(t_data *data, int collect, int exit, int player)
 {
 	int	i;
 	int	j;
@@ -85,7 +85,7 @@ int	val_map_cont(t_map *data, int collect, int exit, int player)
 	return (1);
 }
 
-int	val_map_chars(t_map *data)
+int	val_map_chars(t_data *data)
 {
 	int	i;
 	int	j;
@@ -107,7 +107,7 @@ int	val_map_chars(t_map *data)
 	return (1);
 }
 
-void	flood_fill(t_map *data, int x, int y)
+/* void	flood_fill(t_data *data, int x, int y)
 {
 	if (x < 0 || y < 0)
 		return ;
@@ -115,4 +115,4 @@ void	flood_fill(t_map *data, int x, int y)
 	flood_fill(data, x - 1, y);
 	flood_fill(data, x, y + 1);
 	flood_fill(data, x, y - 1);
-}
+} */

@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:21:31 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/08/13 17:53:53 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/08/20 14:43:07 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ int	ver_newline(char *line)
 	return (1);
 }
 
-void	ver_empty_file(int bytes_read, t_map *data)
+void	ver_empty_file(int bytes_read, t_data *data)
 {
 	if (bytes_read == 0)
 		return_error(2, &data);
 }
 
-char	**read_map(int fd, t_map *data)
+char	**read_map(int fd, t_data *data)
 {
 	char	buffer[BUFFER_SIZE];
 	int		bytes_read;

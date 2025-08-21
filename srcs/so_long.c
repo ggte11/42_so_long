@@ -6,13 +6,13 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 15:41:05 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/08/13 17:58:31 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/08/20 16:22:12 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_val(t_map *data)
+void	map_val(t_data *data)
 {
 	if (!val_map_cont(data, 0, 0, 0))
 		return_error(4, &data);
@@ -39,7 +39,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	return_error(int error_code, t_map **data)
+void	return_error(int error_code, t_data **data)
 {
 	if (error_code == 0)
 		ft_putstr_fd("Error\nCode 0: No valid map file was provided \n", 2);
@@ -70,19 +70,20 @@ void	return_error(int error_code, t_map **data)
 int	main(int argc, char **argv)
 {
 	int		mapfd;
-	t_map	*data;
+	t_data	*data;
 
 	if ((argc > 2 || argc == 1) || !ft_strnstr (argv[1], ".ber", ft_strlen(argv[1])))
 		return_error (0, NULL);
 	mapfd = open (argv[1], O_RDONLY);
 	if (mapfd < 0)
 		return_error(1, NULL);
-	data = malloc (sizeof(t_map));
+	data = malloc (sizeof(t_data));
 	if (!data)
 		return (0);
-	data = ft_memset (data, 0, sizeof(t_map));
+	data = ft_memset (data, 0, sizeof(t_data));
 	data->matrix = read_map(mapfd, data);
 	close(mapfd);
 	map_val(data);
+	initialize_game(data);
 	return (0);
 }
