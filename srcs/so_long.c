@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 15:41:05 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/08/20 16:22:12 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/09/02 19:02:07 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,8 @@ void	map_val(t_data *data)
 		return_error(3, &data);
 	if (!val_map_chars(data))
 		return_error(4, &data);
-}
-
-void	free_map(char **map)
-{
-	int	i;
-
-	if (!map)
-		return;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
+	if (!val_path(data))
+		return_error(5, &data);
 }
 
 void	return_error(int error_code, t_data **data)
@@ -57,13 +44,8 @@ void	return_error(int error_code, t_data **data)
 		ft_putstr_fd("Error\nCode 6: Window initialization problem \n", 2);
 	else if (error_code == 7)
 		ft_putstr_fd("Error\nCode 7: Image initialization problem \n", 2);
-	if (data && *data)
-	{
-		if ((*data)->matrix)
-			free_map((*data)->matrix);
-		free(*data);
-		*data = NULL;
-	}
+	if (data)
+		free_all(*data);
 	exit (0);
 }
 
@@ -83,7 +65,11 @@ int	main(int argc, char **argv)
 	data = ft_memset (data, 0, sizeof(t_data));
 	data->matrix = read_map(mapfd, data);
 	close(mapfd);
+	exit_pos(data);
 	map_val(data);
 	initialize_game(data);
+	mlx_hook(data->game.win, KeyPress, KeyPressMask, inputs,data);
+	mlx_hook(data->game.win, DestroyNotify, NoEventMask, close_game, data);
+	mlx_loop(data->game.mlx);
 	return (0);
 }

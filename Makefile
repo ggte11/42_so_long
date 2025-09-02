@@ -6,7 +6,7 @@
 #    By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/11 15:11:41 by mcardoso          #+#    #+#              #
-#    Updated: 2025/08/20 16:14:47 by mcardoso         ###   ########.fr        #
+#    Updated: 2025/09/02 19:05:23 by mcardoso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRCS = $(SRC_DIR)/so_long.c \
 	   $(SRC_DIR)/map_validation.c \
 	   $(SRC_DIR)/map_initializer.c \
 	   $(SRC_DIR)/utils.c \
+	   $(SRC_DIR)/map_val_utils.c \
+	   $(SRC_DIR)/movements.c \
 
 OBJS = $(SRCS:.c=.o)
 
