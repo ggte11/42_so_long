@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:03:16 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/09/01 18:27:44 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:14:52 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	**copy_matrix(t_data *data)
 		copy[i] = ft_strdup(data->matrix[i]);
 		if (!copy[i])
 		{
-			while(--i >= 0)
+			while (--i >= 0)
 				free(copy[i]);
 			free(copy);
 			return (NULL);
@@ -88,7 +88,7 @@ void	flood_fill(t_data *data, int x, int y)
 {
 	if (x < 0 || x >= data->width || y < 0 || y >= data->height)
 		return ;
-	if(data->matrix[y][x] == '1' || data->matrix[y][x] == 'F')
+	if (data->matrix[y][x] == '1' || data->matrix[y][x] == 'F')
 		return ;
 	data->matrix[y][x] = 'F';
 	flood_fill(data, x + 1, y);

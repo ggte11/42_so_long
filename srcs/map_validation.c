@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 18:33:48 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/09/02 19:21:56 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/09/03 19:51:43 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,18 @@ int	val_map_walls(t_data *data)
 	data->height = i;
 	width = ft_strlen(data->matrix[0]);
 	data->width = width;
-	i = 0;
-	while (i < width)
+	i = -1;
+	while (++i < width)
 	{
-		if (data->matrix[0][i] != '1' || data->matrix[data->height - 1][i] != '1')
+		if (data->matrix[0][i] != '1' || data
+			->matrix[data->height - 1][i] != '1')
 			return (0);
-		i++;
 	}
-	i = 0;
-	while (i < data->height)
+	i = -1;
+	while (++i < data->height)
 	{
 		if (data->matrix[i][0] != '1' || data->matrix[i][width - 1] != '1')
 			return (0);
-		i++;
 	}
 	return (1);
 }

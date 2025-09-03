@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:23:06 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/09/02 19:37:23 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:14:10 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	player_move(t_data *data, int x, int y)
 		ft_printf("Im gonna Mimir -_-");
 		close_game(data);
 	}
-	if( coords == 'C')
+	if (coords == 'C')
 	{
 		data->game.col_collected++;
 		if (data->game.col_collected == data->game.col_total)

@@ -6,7 +6,7 @@
 /*   By: mcardoso <mcardoso@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 17:13:42 by mcardoso          #+#    #+#             */
-/*   Updated: 2025/09/02 19:03:48 by mcardoso         ###   ########.fr       */
+/*   Updated: 2025/09/03 16:15:29 by mcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_maps(t_data *data)
 {
 	if (data->matrix)
 		free_array(data->matrix);
+	free(data);
 }
 
 void	free_array(char **arr)
@@ -23,7 +24,7 @@ void	free_array(char **arr)
 	int	i;
 
 	if (!arr)
-		return;
+		return ;
 	i = 0;
 	while (arr[i])
 	{
@@ -45,6 +46,8 @@ void	free_all(t_data *data)
 		mlx_destroy_image(data->game.mlx, data->sprites.exit);
 	if (data->sprites.player)
 		mlx_destroy_image(data->game.mlx, data->sprites.player);
+	if (data->game.win)
+		mlx_destroy_window(data->game.mlx, data->game.win);
 	if (data->game.mlx)
 	{
 		mlx_destroy_display(data->game.mlx);
